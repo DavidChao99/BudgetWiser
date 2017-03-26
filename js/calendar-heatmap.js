@@ -144,7 +144,8 @@ function calendarHeatmap() {
 
           var date = day;
           localStorage.setItem("storageName",date);
-          document.location.href = "C:/Users/David/Desktop/todayview/todayview/index.html"
+          // document.location.href = "C:/Users/David/Desktop/todayview/todayview/index.html"
+          document.location.href = "../todayview/index.html"
 
           onClick({ date: d, count: count}
 

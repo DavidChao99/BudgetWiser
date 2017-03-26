@@ -101,7 +101,7 @@ function assignValues(wanted_date) {
 	request.send(null);
 }
 
-function addPurchase(amount, description ) {
+function addPurchase() {
 
 	var amount = document.getElementById("Cost").value;
 	var description = document.getElementById("Category").value;
