@@ -135,6 +135,9 @@ function addPurchase(amount, description ) {
 }
 
 window.onload = function() {
+	date = localStorage.getItem("storageName");
+	console.log(date);
+	date = "2017-03-"+date;
 	assignValues(date);
 }
 

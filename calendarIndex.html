@@ -50,29 +50,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="js/calendar-heatmap.js"></script>
-    <script type="text/javascript">
+      <script type="text/javascript">
       var now = moment().endOf('day').toDate();
       var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
-      var monthAgo = moment().startOf('day').subtract(1, 'months').toDate();
-      //var chartData = d3.time.days(monthAgo, now).map(function (dateElement) {
-        //var d = moment(dateElement);
-        //var day = d.date();
-        //var month = d.month();
-        //var year = d.year();
-        //var total = getTotalDate("" + year + "-" + month + "-" + day);
-    //     return {
-    //         date: dateElement, 
-    //         count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? parseInt(total)};
-    //   });
-        var chartData = d3.time.days(monthAgo, now).map(function (dateElement) {
-            var d = moment(dateElement);
-            var day = d.date();
-            var month = d.month();
-            var year = d.year();
-            var total = getTotalDate("" + year + "-" + month + "-" + day);
+      var chartData = d3.time.days(yearAgo, now).map(function (dateElement) {
         return {
           date: dateElement,
-          count: total
+          count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? Math.floor(Math.random() * 60) : Math.floor(Math.random() * 10)
         };
       });
       var heatmap = calendarHeatmap()
@@ -81,46 +65,9 @@
                       .tooltipEnabled(true)
                       .colorRange(['#f4f7f7', '#79a8a9'])
                       .onClick(function (data) {
-                        // console.log('data', data);
+                        console.log('data', data);
                       });
       heatmap();  // render the chart
-      
-      
-       function getTotalDate(wanted_date) {
-        accountId = "58d7936e1756fc834d909b5f";
-        var url = "http://api.reimaginebanking.com/accounts/" + accountId + "/purchases?key=e400f7071110f8b870bea5508aeb92c6";
-      
-        var totalMoneySpent = 0.00;
-      
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function() {
-            if (request.readyState === 4) {
-                if (request.status === 200) {
-                    // console.log(request.responseText);
-                    var jsonResponse = JSON.parse(request.responseText);
-      
-                    // console.log(wanted_date);
-      
-                    for(var i = 0; i < jsonResponse.length; i ++) {
-                        // console.log(wanted_date);
-                        if( jsonResponse[i]['purchase_date'].localeCompare(wanted_date) == 0 ) {
-                            totalMoneySpent += jsonResponse[i]['amount'];
-                        }
-                    }
-                } else {
-                    alert('uh oh');
-                }
-      
-            // console.log(totalMoneySpent);
-            return totalMoneySpent;
-            }
-        };
-        request.open("GET", url , true);
-        request.send(null);
-      
-       }
-      
-      
     </script>
 
 
