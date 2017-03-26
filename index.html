@@ -14,8 +14,13 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Gauge Css -->
+    <link rel="stylesheet" type="text/css" href="css/gauge.css">
+
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/js.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,103 +38,129 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
-    <ul class="nav navbar-nav">
+    <button class="btn navbar-btn pull-right" id="login" data-toggle="modal" data-target="#loginModal">Log In</button>
+    <ul class="nav navbar-nav pull-right">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">Link</a></li>
       <li><a href="#">Link</a></li>
     </ul>
-    <button class="btn btn-danger navbar-btn">Button</button>
     </nav>
 
     <!-- Page Content -->
-    <div class="container" style="text-align:center">
-        <div class="row"style="text-align:center">
-            <div class="col-lg-12"style="text-align:center">
-                <div class="container"style="text-align:center">
-                    <br>
-                    <br>
-                    <div class="row" style="text-align:center">
-                        <div class="progress" id="progress-bar-thick">
-                          <div class="progress-bar progress-bar-success" style="width: 35%"></div>
-                          <div class="progress-bar progress-bar-warning" style="width: 20%"></div>
-                          <div class="progress-bar progress-bar-danger" style="width: 10%"></div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <!-- <p>Note: You may need to adjust some CSS based on the size of your logo. The default logo size is 150x50 pixels.</p> -->
+    <div class="container1">
+        <div class="gauge-a"></div>
+        <div class="gauge-b"></div>
+        <div class="gauge-c"></div>
+        <div class="gauge-d"></div>
+        <div class="gauge-e"></div>
+        <div class="gauge-data"><h1 id="percent">0%</h1>
+        <br>
+         <button id="AddButton" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="width:50%">Add Purchase</button>
 
-
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h3 class="modal-title">Add Purchase</h3>
-                      </div>
-                      <div class="modal-body">
-                        <h5>What did you just buy?</h5>
-                        <input id="Purchase" type="text">
-                        <h5>How much did it cost?</h5>
-                        <input id="Cost" type="number">
-                        <h5>What Category?</h5>
-                        <select id="Category">
-                            <option value="food">Food</option>
-                            <option value="transport">Transport</option>
-                            <option value="entertainment">Entertainment</option>
-                            <option value="utilities">Utilities</option>
-                            <option value="miscellaneous">Miscellaneous</option>
-                        </select>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
-                    <table class="table-fill" >
-                        <thead>
-                            <tr>
-                                <th class="text-left">Category</th>
-                                <th class="text-left">Amount Spent</th>
-                            </tr>
-                        </thead>
-                        <tbody class = "table-hover">
-                            <tr>
-                                <td class="text-left">Food</td>
-                                <td class="text-left">$8.30</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Transportation</td>
-                                <td class="text-left">$8.30</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Entertainment</td>
-                                <td class="text-left">$8.30</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Utilities</td>
-                                <td class="text-left">$8.30</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Miscellaneous</td>
-                                <td class="text-left">$8.30</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-1" style="height:420px">
-                    <button id="AddButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width:80%">Add Purchase</button> 
-                </div>
-
-            </div>
         </div>
+    </div>
+
+    <br>
+    <!-- <p>Note: You may need to adjust some CSS based on the size of your logo. The default logo size is 150x50 pixels.</p> -->
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Add Purchase</h3>
+          </div>
+          <div class="modal-body">
+            <h5>What did you just buy?</h5>
+            <input id="Purchase" type="text">
+            <h5>How much did it cost?</h5>
+            <input id="Cost" type="number">
+            <h5>What Category?</h5>
+            <select id="Category">
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="utilities">Utilities</option>
+                <option value="miscellaneous">Miscellaneous</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Log In / Register</h3>
+          </div>
+          <div class="modal-body">
+            <h5>Username</h5>
+            <input id="Username" type="text">
+            <h5>Password</h5>
+            <input id="Cost" type="password">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="isAccountIDValid()">Login</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table-fill" >
+<!--             <thead>
+                <tr>
+                    <th class="text-left">Category</th>
+                    <th class="text-left">Amount Spent</th>
+                </tr>
+            </thead> -->
+
+            <tbody class = "table-hover">
+                <tr>
+                    <td class="text-left">Category</th>
+                    <td class="text-left">Amount Spent</th>
+                </tr>
+                <tr>
+                    <td class="text-left">Food</td>
+                    <td class="text-left">$8.30</td>
+                </tr>
+                <tr>
+                    <td class="text-left">Transportation</td>
+                    <td class="text-left">$8.30</td>
+                </tr>
+                <tr>
+                    <td class="text-left">Entertainment</td>
+                    <td class="text-left">$8.30</td>
+                </tr>
+<!--                 <tr>
+                    <td class="text-left">Utilities</td>
+                    <td class="text-left">$8.30</td>
+                </tr> -->
+                <tr>
+                    <td class="text-left">Miscellaneous</td>
+                    <td class="text-left">$8.30</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1" style="height:420px">
+<!--         <button id="AddButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width:80%">Add Purchase</button>  -->
     </div>
     <!-- /.container -->
 
