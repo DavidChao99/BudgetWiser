@@ -9,10 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <title>Logo Nav - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="css/calendar-heatmap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
@@ -33,38 +37,135 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
-    <button class="btn navbar-btn pull-right" id="login">Log In</button>
+    <button class="btn navbar-btn pull-right" id="login" data-toggle="modal" data-target="#loginModal">Log In</button>
+    <button class="btn navbar-btn pull-right" id="settings" data-toggle="modal" data-target="#settingModal">Settings</button>
     <ul class="nav navbar-nav pull-right">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
+      <li><a href="./index.html">Day</a></li>
+      <li class="active"><a href="./calendarIndex.html">Calendar</a></li>
+      <li><a href="./goalsIndex.html">Goals</a></li>
     </ul>
     </nav>
 
+    <div class="container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/calendar-heatmap.js"></script>
+    <script type="text/javascript">
+      var now = moment().endOf('day').toDate();
+      var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
+      var monthAgo = moment().startOf('day').subtract(1, 'months').toDate();
+      //var chartData = d3.time.days(monthAgo, now).map(function (dateElement) {
+        //var d = moment(dateElement);
+        //var day = d.date();
+        //var month = d.month();
+        //var year = d.year();
+        //var total = getTotalDate("" + year + "-" + month + "-" + day);
+    //     return {
+    //         date: dateElement, 
+    //         count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? parseInt(total)};
+    //   });
+        var chartData = d3.time.days(monthAgo, now).map(function (dateElement) {
+            var d = moment(dateElement);
+            var day = d.date();
+            var month = d.month();
+            var year = d.year();
+            var total = getTotalDate("" + year + "-" + month + "-" + day);
+        return {
+          date: dateElement,
+          count: total
+        };
+      });
+      var heatmap = calendarHeatmap()
+                      .data(chartData)
+                      .selector('.container')
+                      .tooltipEnabled(true)
+                      .colorRange(['#f4f7f7', '#79a8a9'])
+                      .onClick(function (data) {
+                        // console.log('data', data);
+                      });
+      heatmap();  // render the chart
+      
+      
+       function getTotalDate(wanted_date) {
+        accountId = "58d7936e1756fc834d909b5f";
+        var url = "http://api.reimaginebanking.com/accounts/" + accountId + "/purchases?key=e400f7071110f8b870bea5508aeb92c6";
+      
+        var totalMoneySpent = 0.00;
+      
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    // console.log(request.responseText);
+                    var jsonResponse = JSON.parse(request.responseText);
+      
+                    // console.log(wanted_date);
+      
+                    for(var i = 0; i < jsonResponse.length; i ++) {
+                        // console.log(wanted_date);
+                        if( jsonResponse[i]['purchase_date'].localeCompare(wanted_date) == 0 ) {
+                            totalMoneySpent += jsonResponse[i]['amount'];
+                        }
+                    }
+                } else {
+                    alert('uh oh');
+                }
+      
+            // console.log(totalMoneySpent);
+            return totalMoneySpent;
+            }
+        };
+        request.open("GET", url , true);
+        request.send(null);
+      
+       }
+      
+      
+    </script>
 
-    <div>
-        <img
-    </div>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width:100%">Set Goal</button>
+
+
+
+
+
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="loginModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">Set Goals</h3>
+            <h3 class="modal-title">Log In / Register</h3>
           </div>
           <div class="modal-body">
-            <h5>What do you want to buy?</h5>
-            <input id="Goal" type="text">
-            <h5>How much does it cost?</h5>
-            <input id="Cost" type="number">
-            <h5>By When?</h5>
-            <input id="Date" type="text">
+            <h5>Username</h5>
+            <input id="Username" type="text">
+            <h5>Password</h5>
+            <input id="Cost" type="password">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="isAccountIDValid()">Login</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="settingModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Settings</h3>
+          </div>
+          <div class="modal-body">
+            <h5>Account Id</h5>
+            <input id="accountId" type="text">
+            <h5>Choose a daily budget number! (We recommend 40% of daily income)</h5>
+            <input id="budget" type="number">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="isAccountIDValid()">Finish</button>
           </div>
         </div>
 
@@ -85,3 +186,5 @@
 </body>
 
 </html>
+
+

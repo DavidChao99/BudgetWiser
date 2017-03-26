@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logo Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse" id="navbarheader">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <button class="btn navbar-btn pull-right" id="login" data-toggle="modal" data-target="#loginModal">Log In</button>
+    <button class="btn navbar-btn pull-right" id="settings" data-toggle="modal" data-target="#settingModal">Settings</button>
+    <ul class="nav navbar-nav pull-right">
+      <li><a href="./index.html">Day</a></li>
+      <li><a href="./calendarIndex.html">Calendar</a></li>
+      <li class="active"><a href="./goalsIndex.html">Goals</a></li>
+    </ul>
+    </nav>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table-fill" >
+<!--             <thead>
+                <tr>
+                    <th class="text-left">Category</th>
+                    <th class="text-left">Amount Spent</th>
+                </tr>
+            </thead> -->
+
+            <tbody>
+                <tr>
+                    <td class="text-left" >Goal</th>
+                    <td class="text-left">Date of Goal</th>
+                    <td class="text-left">Cost of Goal</th>
+
+                </tr>
+                <tr class="goalone">
+                    <td class="text-left">Buy FIFA 2017</td>
+                    <td class="text-left">March/28/2017</td>
+                    <td class="text-left">$60</td>
+
+                </tr>
+                <tr class="goaltwo">
+                    <td class="text-left">Dinner at Carmines</td>
+                    <td class="text-left">March/28/2017</td>
+                    <td class="text-left">$30</td>
+                </tr>
+                <tr class="goalthree">
+                    <td class="text-left">Watch Boss Baby Opening Night</td>
+                    <td class="text-left">March/31/2017</td>
+                    <td class="text-left">$15</td>
+                </tr>
+<!--                 <tr>
+                    <td class="text-left">Utilities</td>
+                    <td class="text-left">$8.30</td>
+                </tr> -->
+                <tr class="goalfour">
+                    <td class="text-left">Easter Gift for Grandma</td>
+                    <td class="text-left">April/1/2017</td>
+                    <td class="text-left">$30</td>
+                </tr>
+                <tr class="goalfive">
+                    <td class="text-left">New Laptop</td>
+                    <td class="text-left">June/1/2017</td>
+                    <td class="text-left">$600</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div id="settingModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Settings</h3>
+          </div>
+          <div class="modal-body">
+            <h5>Account Id</h5>
+            <input id="accountId" type="text">
+            <h5>Choose a daily budget number! (We recommend 40% of daily income)</h5>
+            <input id="budget" type="number">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="isAccountIDValid()">Finish</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- <div>
+      <ul>
+        <li>Buy FIFA 2017--March/28/2017--$60</li>
+        <li>Dinner at Carmine's--March/28/2017--$30</li>
+        <li>Watch Boss Baby on Opening Night--March/31/2017--$15</li>
+        <li>Easter Gift for Grandma--April/1/2017--$30</li>
+        <li>New laptop--June/1/2017--$600</li>
+      </ul> -->
+    <!--</div>-->
+    <br>
+    <div style="text-align:center">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Set Goal</button>
+    </div>
+    
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Set Goals</h3>
+          </div>
+          <div class="modal-body">
+            <h5>What do you want to buy?</h5>
+            <input id="Goal" type="text">
+            <h5>How much does it cost?</h5>
+            <input id="Cost" type="number">
+            <h5>By When?</h5>
+            <input id="Date" type="text">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Log In / Register</h3>
+          </div>
+          <div class="modal-body">
+            <h5>Username</h5>
+            <input id="Username" type="text">
+            <h5>Password</h5>
+            <input id="Cost" type="password">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="isAccountIDValid()">Login</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Page Content -->
+  
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

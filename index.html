@@ -19,8 +19,10 @@
 
     <!-- Custom CSS -->
     <link href="css/logo-nav.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="js/js.js"></script>
+<!--     <script type="text/javascript" src="js/js.js"></script> -->
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,20 +41,53 @@
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <button class="btn navbar-btn pull-right" id="login" data-toggle="modal" data-target="#loginModal">Log In</button>
+    <button class="btn navbar-btn pull-right" id="settings" data-toggle="modal" data-target="#settingModal">Settings</button>
     <ul class="nav navbar-nav pull-right">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
+      <li class="active"><a href="#">Day</a></li>
+      <li><a href="./calendarIndex.html">Calendar</a></li>
+      <li><a href="./goalsIndex.html">Goals</a></li>
     </ul>
     </nav>
+
+    <div class="container" style="position:absolute">
+        <h2 id="DateH1" style="color: #FFFFFF"></h2>
+    </div>
+
+    <div id="settingModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Settings</h3>
+          </div>
+          <div class="modal-body">
+            <h5>Account Id</h5>
+            <input id="accountId" type="text">
+            <h5>Choose a daily budget number! (We recommend 40% of daily income)</h5>
+            <input id="budget" type="number">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Finish</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container" style="position:absolute">
+        <h2 id="DateH1" style="color: #FFFFFF"></h2>
+    </div>
 
     <!-- Page Content -->
     <div class="container1">
         <div class="gauge-a"></div>
         <div class="gauge-b"></div>
-        <div class="gauge-c"></div>
-        <div class="gauge-d"></div>
-        <div class="gauge-e"></div>
+        <div class="gauge-c" id="foodtag"></div>
+        <div class="gauge-d" id="transporttag"></div>
+        <div class="gauge-e" id="entertainmenttag"></div>
+        <div class="gauge-f" id="miscellaneoustag"></div>
+        
         <div class="gauge-data"><h1 id="percent">0%</h1>
         <br>
          <button id="AddButton" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="width:50%">Add Purchase</button>
@@ -131,30 +166,30 @@
                 </tr>
             </thead> -->
 
-            <tbody class = "table-hover">
+            <tbody>
                 <tr>
-                    <td class="text-left">Category</th>
+                    <td class="text-left" >Category</th>
                     <td class="text-left">Amount Spent</th>
                 </tr>
-                <tr>
+                <tr class="foodtag" onclick="displayfoodchart()">
                     <td class="text-left">Food</td>
-                    <td class="text-left">$8.30</td>
+                    <td class="text-left" id="foodPrice">$8.30</td>
                 </tr>
-                <tr>
+                <tr class="transporttag" onclick="displaytransportchart()">
                     <td class="text-left">Transportation</td>
-                    <td class="text-left">$8.30</td>
+                    <td class="text-left" id="transPrice">$8.30</td>
                 </tr>
-                <tr>
+                <tr class="entertainmenttag"onclick="displayentertainmentchart()">
                     <td class="text-left">Entertainment</td>
-                    <td class="text-left">$8.30</td>
+                    <td class="text-left" id="entPrice">$8.30</td>
                 </tr>
 <!--                 <tr>
                     <td class="text-left">Utilities</td>
                     <td class="text-left">$8.30</td>
                 </tr> -->
-                <tr>
+                <tr class="miscellaneoustag" onclick="displaymiscellaneouschart()">
                     <td class="text-left">Miscellaneous</td>
-                    <td class="text-left">$8.30</td>
+                    <td class="text-left" id="miscPrice">$8.30</td>
                 </tr>
             </tbody>
         </table>
@@ -171,5 +206,10 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+    <script type="text/javascript" src="js/js.js"></script>
+
+
 
 </html>
+
+
